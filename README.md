@@ -1,5 +1,3 @@
-This repo contains the files for the final project of the Getting and Cleaning Data Course on Coursera.
-
 ### Assignment Submission Files
 1. run_analysis.R
 2. Code Book.md
