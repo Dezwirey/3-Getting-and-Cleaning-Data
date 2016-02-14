@@ -13,4 +13,4 @@ This repo contains the files for the final project of the Getting and Cleaning D
 6. Check the workdirectory folder and behold, tidyDataSet.txt and calculatedMeans.txt are created.
 
 ### Dependencies
-The R script assumes you have 'data.table' installed using install.packages("data.table")
+The R script assumes you have 'dplyr' installed using install.packages("dplyr")
