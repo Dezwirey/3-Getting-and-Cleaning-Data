@@ -28,9 +28,9 @@ run_analysis <- function(){
         names(Y) = "activityId"
         activity <- join(Y, activities)
         activity <- activity[,2]
-        # merge data frames of different columns to form one data table
-        data <- cbind(subject, activity, X)
         
+        # merge data frames of different columns to form one data table, and write it
+        data <- cbind(subject, activity, X)
         write.table(data, "tidyDataSet.txt", row.names = FALSE)
         
         # create a dataset grouped by subject and activity after applying standard deviation and average calculations
