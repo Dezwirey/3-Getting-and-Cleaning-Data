@@ -1,4 +1,5 @@
 run_analysis <- function(){
+        library(dplyr)
         
         # load test and training data
         subject_test = read.table("UCI HAR Dataset/test/subject_test.txt")
@@ -25,15 +26,15 @@ run_analysis <- function(){
         names(subject) <- "id"
         names(X) <- gsub("\\(|\\)", "", features$featureLabel[includedFeatures])
         names(Y) = "activityId"
-        activity <- merge(Y, activities, by="activityId")$activityLabel
-        
+        activity <- join(Y, activities)
+        activity <- activity[,2]
         # merge data frames of different columns to form one data table
         data <- cbind(subject, activity, X)
+        
         write.table(data, "tidyDataSet.txt", row.names = FALSE)
         
         # create a dataset grouped by subject and activity after applying standard deviation and average calculations
-        library(data.table)
-        dataDT <- data.table(data)
-        calculatedData<- dataDT[, lapply(.SD, mean), by=c("id", "activity")]
-        write.table(calculatedData, "calculatedMeans.txt", row.names = FALSE)
+        new_dataset <- group_by(data, id, activity) 
+        new_dataset <-summarise_each(new_dataset,funs(mean))
+        write.table(new_dataset, "calculatedMeans.txt", row.names = FALSE)
 }
