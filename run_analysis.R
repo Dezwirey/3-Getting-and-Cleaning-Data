@@ -29,11 +29,11 @@ run_analysis <- function(){
         
         # merge data frames of different columns to form one data table
         data <- cbind(subject, activity, X)
-        write.table(data, "tidyDataSet.txt")
+        write.table(data, "tidyDataSet.txt", row.names = FALSE)
         
         # create a dataset grouped by subject and activity after applying standard deviation and average calculations
         library(data.table)
         dataDT <- data.table(data)
         calculatedData<- dataDT[, lapply(.SD, mean), by=c("id", "activity")]
-        write.table(calculatedData, "calculatedMeans.txt")
+        write.table(calculatedData, "calculatedMeans.txt", row.names = FALSE)
 }
